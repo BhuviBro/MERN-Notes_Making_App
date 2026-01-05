@@ -6,7 +6,7 @@ export async function getAllNotes(req, res) {
         res.status(200).json({ message: "The notes from DB are \n", notes });
     } catch (error) {
         console.error("Error in getAllNotes Controller: \n", error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ message: "Internal Server Error in GetAllnotes" });
     }
 }
 
@@ -18,7 +18,7 @@ export async function getNoteById(req,res){
         res.status(200).json({message:"Note Found Successfully\n",notes})
     } catch (error) {
         console.error("Error in getNoteById", +error)
-        res.status(500).json({message:"Internal Server Error"})
+        res.status(500).json({message:"Internal Server Error in getNoteById"})
     }
 }
 
@@ -32,7 +32,7 @@ export async function createNote(req, res) {
 
     } catch (error) {
         console.error("Error in createNote Controller: \n", error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ message: "Internal Server Error in createNote" });
     }
 }
 export async function updateNote(req, res) {
@@ -45,7 +45,7 @@ export async function updateNote(req, res) {
         res.status(200).json({ message: "Note Updated Successfully\n", updatedNote })
     } catch (error) {
         console.error("Error in deleteNote Controller: \n", error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ message: "Internal Server Error in updateNote" });
     }
 }
 
@@ -59,6 +59,6 @@ export async function deleteNote(req, res) {
         res.status(200).json({ message: "Note Deleted sucessfully\n", deletedOne })
     } catch (error) {
         console.error("Error in updateNote Controller: \n", error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ message: "Internal Server Error in delete Note" });
     }
 }
