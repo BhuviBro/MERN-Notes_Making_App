@@ -2,7 +2,7 @@ import Note from "../Models/Note.js";
 
 export async function getAllNotes(req, res) {
     try {
-        const notes = await Note.find().sort({createdAt:-1});//newest firstDescending orderBE
+        const notes = await Note.find().sort({ createdAt: -1 });//newest firstDescending orderBE
         res.status(200).json({ message: "The notes from DB are \n", notes });
     } catch (error) {
         console.error("Error in getAllNotes Controller: \n", error);
@@ -10,15 +10,18 @@ export async function getAllNotes(req, res) {
     }
 }
 
-export async function getNoteById(req,res){
+export async function getNoteById(req, res) {
     try {
         const id = (req.params.id)
         const notes = await Note.findById(id);
-        if(!notes) return res.status(404).json({message:"Note of given ID not found \n ID: ",id})
-        res.status(200).json({message:"Note Found Successfully\n",notes})
+        if (!notes) {
+            return res.status(404).json({
+                message: `Note of given ID not found: ${id}`
+            });
+        } res.status(200).json({ message: "Note Found Successfully\n", notes })
     } catch (error) {
-        console.error("Error in getNoteById", +error)
-        res.status(500).json({message:"Internal Server Error in getNoteById"})
+        console.error("Error in getNoteById", error)
+        res.status(500).json({ message: "Internal Server Error in getNoteById" })
     }
 }
 
@@ -55,7 +58,10 @@ export async function deleteNote(req, res) {
     try {
         const { title, content } = req.body;
         const deletedOne = await Note.findByIdAndDelete(req.params.id)
-        if (!deletedOne) res.status(404).json({ message: "Note with ID mentioned note Found" })
+        if (!deletedOne)
+            return res.status(404).json({
+                message: "Note with ID mentioned not found"
+            })
         res.status(200).json({ message: "Note Deleted sucessfully\n", deletedOne })
     } catch (error) {
         console.error("Error in updateNote Controller: \n", error);
