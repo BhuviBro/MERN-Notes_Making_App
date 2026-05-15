@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== "production") {
     }));
 }
 app.use(express.json());//This middle will PArse JSON bodies : req.body
-app.use(rateLimiter);//checks for rateliiiting
+// app.use(rateLimiter);//checks for rateliiiting
 
 
 // //Simple Custom Middleware
