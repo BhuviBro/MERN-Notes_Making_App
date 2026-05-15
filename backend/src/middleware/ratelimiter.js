@@ -14,7 +14,7 @@ const rateLimiter = async (req, res, next) => {
         }
         next()
     } catch (error) {
-        console.log("Ratelimit error",error)
+        console.log("Ratelimit error un upstash.js",error)
         next(error)
     }
 
